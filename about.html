@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Leiteng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2D4030;
+            --secondary-color: #C06C4C;
+            --accent-color: rgba(46, 102, 214, 0.452);
+            --bg-color: #FBF8F3;
+            --card-bg: #FFFFFF;
+            --text-dark: #1A241B;
+            --text-light: #6E796E;
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-image: linear-gradient(rgba(251, 248, 243, 0.92), rgba(251, 248, 243, 0.88)), url('north east.avif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(251, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(45, 64, 48, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .nav-icons i:hover {
+            color: var(--secondary-color);
+        }
+
+        .contact-menu {
+            position: relative;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-link i {
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+
+        .contact-socials {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+            padding: 0.6rem 0.8rem;
+            background: var(--card-bg);
+            border-radius: 14px;
+            border: 1px solid rgba(45,64,48,0.08);
+            box-shadow: 0 12px 30px rgba(45,64,48,0.16);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-8px);
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+
+        .contact-menu:hover .contact-socials,
+        .contact-menu:focus-within .contact-socials {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .contact-social {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
+
+        .contact-social.whatsapp-icon {
+            background: #25D366;
+            color: #fff;
+        }
+
+        .contact-social.instagram-icon {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+            color: #fff;
+        }
+
+        .whatsapp-link {
+            color: var(--accent-color);
+        }
+
+        .about-hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 2rem;
+            background-color: rgba(251, 248, 243, 0.45);
+            border-radius: 16px;
+        }
+
+        .about-content {
+            padding: 2rem 0;
+        }
+
+        .section-label {
+            color: var(--secondary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.82rem;
+        }
+
+        .about-content h1 {
+            font-family: var(--font-title);
+            font-size: clamp(3rem, 5vw, 4rem);
+            color: var(--primary-color);
+            margin: 1rem 0;
+            line-height: 1.2;
+        }
+
+        .about-content p {
+            font-size: 1.08rem;
+            color: var(--text-light);
+            margin-bottom: 1.4rem;
+        }
+
+        .about-image {
+            min-height: 420px;
+            background-image: linear-gradient(rgba(45,64,48,0.2), rgba(45,64,48,0.2)), url('north east.avif');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .details-panel {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.2rem;
+            box-shadow: 0 10px 30px rgba(45,64,48,0.08);
+            margin-top: 2rem;
+        }
+
+        .details-panel h2 {
+            font-family: var(--font-title);
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .details-panel p {
+            color: var(--text-light);
+        }
+
+        footer {
+            background-color: #1A241B;
+            color: #D1D5DB;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-family: var(--font-title);
+            color: #FFF;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="mainpage.html" class="logo">LEITENG<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="mainpage.html">Home</a></li>
+                <li><a href="mainpage.html#shop">Collections</a></li>
+                <li><a href="artisan.html">Artisans</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="contact-menu">
+                    <a href="#" id="contact-us-link" class="contact-link">
+                        <i></i> Contact Us
+                    </a>
+                    <div class="contact-socials">
+                        <a href="https://wa.me/917086935829?text=Hello%20LEITENG%20I%20want%20to%20know%20more%20about%20your%20collection" target="_blank" class="contact-social whatsapp-icon" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://instagram.com/leiteng" target="_blank" class="contact-social instagram-icon" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-icons">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="about-content">
+                <span class="section-label">Leiteng &mdash; North East Craft House</span>
+                <h1>About Us</h1>
+                <p>Curated collections celebrating the Northeast focus on bridging ancient handloom techniques with modern silhouettes. By empowering local weavers, artisans, and micro-enterprises, these platforms protect indigenous crafts from mass-market dilution while adapting them for global wardrobes</p>
+                <a href="mainpage.html#shop" class="btn" style="display:inline-block; padding:0.8rem 2rem; background:var(--primary-color); color:#fff; border-radius:4px; font-weight:600; border:1px solid var(--primary-color); transition:all 0.3s ease;">Explore Collection</a>
+            </div>
+            <div class="about-image"></div>
+        </section>
+
+        <section class="details-panel" style="max-width: 1200px; margin: 0 auto 4rem;">
+            <h2>Our Mission</h2>
+            <p>We source handwoven textiles from communities across the Northeast and present them in a contemporary retail experience for customers who value culture, craft, and conscious fashion.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3 style="color: var(--accent-color);">LEITENG</h3>
+                <p>Bringing the finest, authentic indigenous textiles of North East India to the global stage.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Shop By Region</h3>
+                <ul>
+                    <li><a href="#">Assam Silk</a></li>
+                    <li><a href="#">Nagaland Weaves</a></li>
+                    <li><a href="#">Manipuri Handlooms</a></li>
+                    <li><a href="#">Meghalaya Eri Silk</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="artisan.html">Our Artisans</a></li>
+                    <li><a href="about.html">Sustainable Fashion</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to receive updates on rare drops & artisan stories.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 LEITENG. All Rights Reserved. Designed by Information Technology Department.</p>
+        </div>
+    </footer>
+    <script src=".js"></script>
+</body>
+</html>

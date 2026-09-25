@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Leiteng</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="team-page">
+    <a href="mainpage.html" class="main-link">← Main Page</a>
+
+    <div class="carousel-container">
+        <h1 class="about-title">TEAM LEITENG</h1>
+
+        <div class="carousel-wrapper">
+            <button class="nav-btn left" id="prevBtn" aria-label="Previous"></button>
+
+            <div class="carousel-track" id="track">
+                <div class="card" data-name="Irom Angamba" data-role="Member">
+                    <img src="unknown" alt="Member 1">
+                </div>
+                <div class="card" data-name="Navanita" data-role="Team Lead">
+                    <img src="unknown" alt="Member 2">
+                </div>
+                <div class="card" data-name="Fazal" data-role="Product Designer">
+                    <img src="unknown" alt="Member 3">
+                </div>
+                <div class="card" data-name="Ashraful" data-role="Project Manager">
+                    <img src="unknown" alt="Member 4">
+                </div>
+                <div class="card" data-name="Ruhana" data-role="Marketing Strategist">
+                    <img src="unknown" alt="Member 5">
+                </div>
+            </div>
+
+            <button class="nav-btn right" id="nextBtn" aria-label="Next"></button>
+        </div>
+
+        <div class="member-info">
+            <h2 class="member-name" id="memberName">Navanita</h2>
+            <p class="member-role" id="memberRole">Team Lead</p>
+        </div>
+    </div>
+
+    <script>
+        const cards = Array.from(document.querySelectorAll('.card'));
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const memberName = document.getElementById('memberName');
+        const memberRole = document.getElementById('memberRole');
+
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const total = cards.length;
+
+            cards.forEach((card, index) => {
+                let offset = index - currentIndex;
+
+                if (offset > Math.floor(total / 2)) {
+                    offset -= total;
+                } else if (offset < -Math.floor(total / 2)) {
+                    offset += total;
+                }
+
+                card.setAttribute('data-index', offset);
+
+                if (offset === 0) {
+                    memberName.textContent = card.dataset.name;
+                    memberRole.textContent = card.dataset.role;
+                }
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            updateCarousel();
+        });
+
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+
+        updateCarousel();
+    </script>
+</body>
+</html>
